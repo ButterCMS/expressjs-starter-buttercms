@@ -1,0 +1,14 @@
+<% fields.forEach(field=> { %> <% if(field.type==='hero' ){ %>
+<%- include('./sections/hero', {field: field.fields}) %>
+<% } %>
+<% if(field.type==='two_column_with_image' ){ %>
+<%- include('./sections/two-column-with-image', {field: field.fields}) %>
+<% } %>
+<% if(field.type==='features' ){ %>
+<%- include('./sections/features', {field: field.fields}) %>
+<% } %>
+<% if(field.type==='testimonials' ){ %>
+<%- include('./sections/testimonials', {field: field.fields}) %>
+<% } %>
+<% }) %>
+<%- include('./sections/blog-section', {posts})%>

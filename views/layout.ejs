@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<%- include('./head') %>
+
+<body>
+  <% if(API){ %>
+  <%- include('./components/loader') %>
+  <%- include('./sections/header', {menuItems}) %>
+  <%- body %>
+  <%- include('./sections/footer', {menuItems}) %>
+  <% } else { %>
+  <%- include('no-api-hero') %>
+  <% } %>
+
+  <!-- ========================= scroll-top ========================= -->
+  <a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+  </a>
+
+  <!-- =================== JS All Templates ========================= -->
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/polyfill.js"></script>
+  <script src="/js/main.js"></script>
+
+  <!-- ================= JS Index HTML only ========================= -->
+  <script src="/js/tiny-slider.js"></script>
+  <script src="/js/client-slider.js"></script>
+  <script src="/js/section-menu.js"></script>
+</body>
+
+</html>

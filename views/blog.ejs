@@ -1,0 +1,73 @@
+<section id="blog-roll" class="blog-roll-nav">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <%- include('./components/breadcrumb.ejs', {type}); %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Post -->
+<section class="blog-posts">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8 blog-roll-cards">
+        <div class="row">
+          <!--nested row for blogroll-->
+          <% if(posts.length === 0){ %>
+          <p>No blog posts found matching this query.</p>
+          <% } %>
+          
+          <% posts.forEach(post => { %>
+          <div class="col-12 col-lg-6">
+            <div class="blog-roll-card">
+              <div class="blog-roll-card-meta">
+                <h2 class="blog-roll-card-header">
+                  <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+                </h2>
+                <ul class="blog-roll-card-meta-info">
+                  <li>
+                    <a href="javascript:void(0)">
+                      <img src="<%= post.author.profile_image || '/images/team/team-1.png'%> " alt="#" />
+                      <%= post.author.first_name + ' ' + post.author.last_name%>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="lni lni-calendar"></i>
+                      <%= new Date(post.created).toLocaleString() %>
+                    </a>
+                  </li>
+                  <% post.tags.forEach(tag => { %>
+                  <li>
+                    <a href="/blog/tag/<%= tag.slug%>">
+                      <i class="lni lni-tag"></i>
+                      <%= tag.name%>
+                    </a>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+              <% if(post.featured_image){ %>
+              <div class="single-post-thumbnail">
+                <img src="<%= post.featured_image %> " alt="<%= post.featured_image_alt %>" />
+              </div>
+              <% } %>
+
+              <div class="blog-roll-card-body"><%= post.summary %></div>
+              <div class="blog-roll-card-footer text-center">
+                <a href="/blog/<%= post.slug %> " class="main-btn btn-hover">Read More</a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <!-- Widgets Column -->
+      <aside class="col-12 col-lg-4">
+        <%- include('./components/search.ejs', {categories}) %> <%-
+        include('./components/categories.ejs', {categories}) %>
+      </aside>
+    </div>
+  </div>
+</section>

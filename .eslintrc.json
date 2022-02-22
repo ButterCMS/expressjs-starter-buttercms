@@ -1,0 +1,18 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "prettier/prettier": "off",
+    "prefer-destructuring": "off",
+    "no-unused-expressions": "off",
+    "import/extensions":"off"
+  },
+  "plugins": ["ejs","prettier"]
+}

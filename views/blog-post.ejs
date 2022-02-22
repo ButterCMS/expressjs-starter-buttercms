@@ -1,0 +1,71 @@
+<section id="blog-header" class="single-post-nav">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="section-title text-center">
+          <h2>
+            <%= post.title %>
+          </h2>
+          <ul class="breadcrumb-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li>
+              <%= post.title %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Post -->
+<section class="blog-post">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-12 col-12">
+        <div class="single-post">
+          <div class="single-post-meta">
+            <h2 class="single-post-header">
+              <%= post.title %>
+            </h2>
+            <ul class="single-post-meta-info">
+              <li>
+                <a href="javascript:void(0)">
+                  <img src="<%= post.author.profile_image || '/images/team/team-1.png' %> " alt="#">
+                  <%= post.author.first_name + ' ' + post.author.last_name%>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"><i class="lni lni-calendar"></i>
+                  <%= new Date(post.created).toLocaleString() %>
+                </a>
+              </li>
+              <% post.tags.forEach(tag=> { %>
+              <li>
+                <a href="/blog/tag/<%= tag.slug %> "><i class="lni lni-tag"></i>
+                  <%= tag.name %>
+                </a>
+              </li>
+              <% }) %>
+
+            </ul>
+          </div>
+          <% if(post.featured_image){ %>
+          <div class="single-post-thumbnail">
+            <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt %>">
+          </div>
+          <% } %>
+          <div class="single-post-body">
+            <%- post.body %>
+          </div>
+        </div>
+      </div>
+      <!-- Searchbox -->
+      <aside class="col-lg-4 col-md-12 col-12">
+        <%- include('./components/search.ejs', {categories}) %>
+        <%- include('./components/categories.ejs', {categories}) %>
+    </div>
+    </aside>
+  </div>
+  </div>
+</section>

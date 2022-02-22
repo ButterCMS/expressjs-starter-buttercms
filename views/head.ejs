@@ -1,0 +1,22 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <!-- SEO component -->
+
+  <% if(type !== '404'){ %>
+  <%- include('./components/seo', {type}); %>
+  <% } %>
+  <frame http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://buttercms.com;"></frame>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- ========================= CSS here ========================= -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/lineicons.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="preload" href="/css/tiny-slider.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <!-- No JS fallback for tiny-slider -->
+  <noscript>
+    <link rel="stylesheet" href="/css/tiny-slider.css" />
+  </noscript>
+</head>

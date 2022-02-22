@@ -1,0 +1,21 @@
+<% if(type === 'tag'){%>
+<title>Sample Blog - tag: <%= name%></title>
+<meta name="description" content="Sample blog powered by ButterCMS, showing tag: <%= name%>." />
+<% } %> <% if(type === 'category'){%>
+<title>Sample Blog - category: <%= name%></title>
+<meta name="description" content="Sample blog powered by ButterCMS, showing category: <%= name%>." />
+<% } %> <% if(type === 'blog'){%>
+<title>Sample Blog - All Posts</title>
+<meta name="description" content="Sample blog powered by ButterCMS, showing all posts." />
+<% } %> <% if(type === 'search'){%>
+<title>Sample Blog - search results for <%= query%></title>
+<meta name="description" content="Sample blog powered by ButterCMS, showing search results for <%= query %>." />
+<% } %> <% if(type === 'blog-post'){ %>
+<title><%= seo_title %></title>
+<meta name="description" content="<%= meta_description %>" />
+<% if(post.featured_image){ %>
+<meta name="image" content="<%= post.featured_image%>" />
+<% } %> <% } %> <% if(type === 'landing-page' && landing_page){%>
+<title><%= landing_page.fields.seo.title%></title>
+<meta name="description" content="<%= landing_page.fields.seo.description %> " />
+<% } %>

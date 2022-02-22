@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "start": "node --experimental-modules index.js",
+    "dev": "nodemon --experimental-modules index.js",
+    "lint": "eslint index.js",
+    "lint:fix": "eslint --fix"
+  },
+  "dependencies": {
+    "buttercms": "^1.2.8",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-ejs": "^0.0.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  },
+  "type": "module"
+}
