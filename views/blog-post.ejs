@@ -63,22 +63,22 @@
 								<div class="ms-auto">
 									<ul id="nav" class="navbar-nav ms-auto">
 										<li class="nav-item">
-											<a class="active" href="index.html#home">Home</a>
+											<a class="active" href="/#home">Home</a>
 										</li>
 										<li class="nav-item">
-											<a href="index.html#about">About</a>
+											<a href="/#about">About</a>
 										</li>
 										<li class="nav-item">
-											<a href="index.html#features">Features</a>
+											<a href="/#features">Features</a>
 										</li>
 										<li class="nav-item">
-											<a href="index.html#tryit">Try It</a>
+											<a href="/#tryit">Try It</a>
 										</li>
 										<li class="nav-item">
-											<a href="index.html#testimonials">Testimonials</a>
+											<a href="/#testimonials">Testimonials</a>
 										</li>
 										<li class="nav-item">
-											<a href="index.html#blog">Blog</a>
+											<a href="/#blog">Blog</a>
 										</li>
 									</ul>
 								</div>
@@ -119,11 +119,11 @@
 				<div class="row justify-content-center">
 					<div class="col-12">
 						<div class="section-title text-center">
-							<h2>This is a sample blogpost.</h2>
+							<h2><%= post.title  %> </h2>
 							<ul class="breadcrumb-nav">
-								<li><a href="index.html">Home</a></li>
+								<li><a href="/">Home</a></li>
 								<li><a href="blog.html">Blog</a></li>
-								<li>This is a sample blogpost.</li>
+								<li><%= post.title %> </li>
 							</ul>
 						</div>
 					</div>
@@ -137,66 +137,30 @@
 					<div class="col-lg-8 col-md-12 col-12">
 						<div class="single-post">
 							<div class="single-post-meta">
-								<h2 class="single-post-header">This a sample blogpost.</h2>						
+								<h2 class="single-post-header"><%= post.title  %> </h2>						
 								<ul class="single-post-meta-info">
 									<li>
-										<a href="javascript:void(0)"><img src="/images/team/team-1.png" alt="#"> Author Name</a>
+										<a href="javascript:void(0)"><img src="<%= post.author.profile_image || '/images/team/team-1.png' %> " alt="#"><%= post.author.first_name + ' ' + post.author.last_name%> </a>
 									</li>
 									<li>
-										<a href="javascript:void(0)"><i class="lni lni-calendar"></i> 10 Feb 2023
+										<a href="javascript:void(0)"><i class="lni lni-calendar"></i> <%= new Date(post.created).toLocaleString('en-US', {day: 'numeric', month: 'short', year: 'numeric'  })  %> 
 									</a>
 									</li>
-									<li>
-										<a href="javascript:void(0)"><i class="lni lni-tag"></i> Marketing</a>
-									</li>
+									<% post.tags.forEach(tag => { %>
+										<li>
+											<a href="javascript:void(0)"><i class="lni lni-tag"></i><%= tag.name  %> </a>
+										</li>
+								   <% })  %> 
+									
 								</ul>
 							</div>
-							<div class="single-post-thumbnail">
-								<img src="https://cdn.buttercms.com/bGQip1SQSoevxZxIp5Jh" alt="">
-							</div>
-							<div class="single-post-body">
-								<p>Welcome to ButterCMS! This an example blog post written using Butter.
-								</p>
-								<h3>Blog Engine Demo</h3>
-								<p>Here's a helpful walkthrough of our Blog Engine solution.</p>
-								<div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
-									<iframe 
-										style="position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: 9999;" 
-										src="https://www.youtube.com/embed/0dJbHy2XqoY" 
-										frameborder="0" 
-										allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-										allowfullscreen="allowfullscreen">
-									</iframe>
+							<% if(post.featured_image){ %>
+								<div class="single-post-thumbnail">
+									<img src="<%= post.featured_image%> " alt="<%= post.featured_image_alt  %> ">
 								</div>
-								<br />
-								<a href="https://buttercms.com/demo/blog-engine-why-our-blog-engine/">
-									https://buttercms.com/demo/blog-engine-why-our-blog-engine/</a>
-								</p>
-								<p></p>
-								<h3>What's happening here?</h3>
-								<p>If you're viewing this post from your website or command line, 
-									you've successfully made a request to&nbsp;the 
-									<a href="https://buttercms.com/docs/api">Butter API</a>. 
-									If you haven't already, make sure you have our 
-									<a href="https://buttercms.com/docs/">development guides</a> 
-									pulled up for step-by-step instructions on setting up Butter.</p>
-								<h3>How does&nbsp;editing work?</h3>
-								<p>Butter's WYSIWYG editor 
-									supports standard text formatting including headings, links, quotes,
-									 code, text alignment, and more. You can upload, crop, and resize
-									  images which are automatically hosted and delivered through a CDN
-									   (see below). You can also edit HTML directly when needed.</p>
-								<figure class="image">
-									<img 
-									src="https://d2wzhk7xhrnk1x.cloudfront.net/rgPM9aHoSSKnjk44TQlD_butter-blog-post.jpg"
-									alt="Delivered to you via CDN" />
-									<figcaption>Delivered to you via CDN</figcaption>
-								</figure>
-								<h3>Can I use Butter as a full CMS for&nbsp;things other than a&nbsp;blog?</h3>
-								<p>Yes. Butter can be used as a full CMS for managing dynamic content and creating 
-									pages across your entire website or app. Check out our 
-									<a href="https://buttercms.com/docs/">development guides</a> for step-by-step 
-									tutorials on setting this up.</p>
+							<% } %>  
+							<div class="single-post-body">
+								<%- post.body  %> 
 							</div>
 						</div>
 					</div>
@@ -215,21 +179,11 @@
 						<div class="widget categories-widget">
 							<h5 class="widget-title">Categories</h5>
 							<ul class="categories-list">
-								<li>
-									<a href="javascript:void(0)">Design</a>
-								</li>
-								<li>
-									<a href="javascript:void(0)">UX</a>
-								</li>
-								<li>
-									<a href="javascript:void(0)">Interview</a>
-								</li>
-								<li>
-									<a href="javascript:void(0)">Business</a>
-								</li>
-								<li>
-									<a href="javascript:void(0)">Popular</a>
-								</li>
+								<% post.categories.forEach(category => { %>
+									<li>
+										<a href="/<%= category.slug  %> "><i class="lni lni-tag"></i><%= category.name  %> </a>
+									</li>
+							   <% })  %> 
 							</div>
 						</div>
 					</aside>
@@ -261,12 +215,12 @@
 					<div class="footer-widget">
 						<h3>About Us</h3>
 						<ul class="links">
-							<li><a href="index.html#home">Home</a></li>
-							<li><a href="index.html#about">About</a></li>
-							<li><a href="index.html#features">Features</a></li>
-							<li><a href="index.html#tryit">Try It</a></li>
-							<li><a href="index.html#testimonials">Testimonials</a></li>
-							<li><a href="index.html#blog">Blog</a></li>
+							<li><a href="/#home">Home</a></li>
+							<li><a href="/#about">About</a></li>
+							<li><a href="/#features">Features</a></li>
+							<li><a href="/#tryit">Try It</a></li>
+							<li><a href="/#testimonials">Testimonials</a></li>
+							<li><a href="/#blog">Blog</a></li>
 						</ul>
 					</div>
 				</div>

@@ -23,8 +23,13 @@ app.get('/', (_, res) => {
     });
 })
 
-app.get('/blog.html', (_,res) => {
-    res.render('blog')
+app.get('/blog/:slug', (req,res) => {
+    const slug = req.params.slug;
+    butter.post.retrieve(slug).then(data => {
+         res.render('blog-post', {
+            post: data.data.data
+        });
+    }) 
 })
 
 app.listen(port)
