@@ -23,6 +23,14 @@ app.get('/', (_, res) => {
     });
 })
 
+app.get('/blog', (req,res) => {
+    butter.post.list({page_size: 10, page: 1}).then(({data}) => {
+        res.render('blog', {
+            posts: data.data
+        })
+    })
+})
+
 app.get('/blog/:slug', (req,res) => {
     const slug = req.params.slug;
     butter.post.retrieve(slug).then(data => {

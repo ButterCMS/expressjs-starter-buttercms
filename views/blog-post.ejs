@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Sample Blog Post with Components - powered by ButterCMS</title>
+    <title><%= post.seo_title%></title>
     <meta name="description" content="Sample Landing Page with Components - powered by ButterCMS" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="https://buttercms.com/static/v2/images/favicon.png"/>
@@ -122,7 +122,7 @@
 							<h2><%= post.title  %> </h2>
 							<ul class="breadcrumb-nav">
 								<li><a href="/">Home</a></li>
-								<li><a href="blog.html">Blog</a></li>
+								<li><a href="/blog">Blog</a></li>
 								<li><%= post.title %> </li>
 							</ul>
 						</div>
