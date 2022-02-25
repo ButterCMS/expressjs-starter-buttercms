@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Sample Blog with Components - powered by ButterCMS</title>
-    <meta name="description" content="Sample Landing Page with Components - powered by ButterCMS" />
+	<!-- SEO component -->
+	<%- include('../components/seo', {type}); %>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="https://buttercms.com/static/v2/images/favicon.png"/>
     <!-- Place favicon.ico in the root directory -->
@@ -92,24 +92,26 @@
 	<!-- ========================= header end ========================= -->
 
    <!-- ========================= hero no API token ========================= -->
-<!--     <section id="home" class="hero-section">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-xl-6 col-lg-6 col-md-10">
-					<div class="hero-content">
-						<h1>Configure your ButterCMS API Token</h1>
-						<p>Please add your API token to XYZ file.</p>
-						<a target="_blank" href="https://buttercms.com/join/" class="main-btn btn-hover">
-							Get your free API token</a>
+	<% if(!API){ %>
+		<section id="home" class="hero-section">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-xl-6 col-lg-6 col-md-10">
+						<div class="hero-content">
+							<h1>Configure your ButterCMS API Token</h1>
+							<p>Please add your API token to <i>.env</i> file.</p>
+							<a target="_blank" href="https://buttercms.com/join/" class="main-btn btn-hover">
+								Get your free API token</a>
+						</div>
+					</div>
+					<div class="col-xxl-6 col-xl-6 col-lg-6">
+						<img width="300" src="https://cdn.buttercms.com/9bPtzdJ6QSWkySNjlmyR" alt="">
+						<div class="hero-image text-center text-lg-end"></div>
+					</div>
 					</div>
 				</div>
-				<div class="col-xxl-6 col-xl-6 col-lg-6">
-					<img width="300" src="https://cdn.buttercms.com/9bPtzdJ6QSWkySNjlmyR" alt="">
-					<div class="hero-image text-center text-lg-end"></div>
-				</div>
-				</div>
-			</div>
-		</section> -->
+			</section>
+	<% } else { %>  
 		<!-- ========================= hero-section end ========================= -->
 
 	<!-- ========================= blog-roll section start ========================= -->
@@ -118,50 +120,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12">
-
-					<!-- Breadcrumb nav for main blog.html view -->
-					<div class="section-title text-center">
-						<h2>All Blog Posts</h2>
-						<ul class="breadcrumb-nav">
-							<li><a href="index.html">Home</a></li>
-							<li>All blog posts</li>
-						</ul>
-					</div>
-					<!-- End Nav -->
-
-					<!-- Breadcrumb nav for categories view -->
-					<!-- <div class="section-title text-center">
-						<h2>Blog Posts by Category</h2>
-						<ul class="breadcrumb-nav">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li>Category: Name</li>
-						</ul>
-					</div> -->
-					<!-- End Nav -->
-
-					<!-- Breadcrumb nav for posts by tag view -->
-					<!-- <div class="section-title text-center">
-						<h2>Blog Posts by Tag</h2>
-						<ul class="breadcrumb-nav">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li>Tag: Name</li>
-						</ul>
-					</div> -->
-					<!-- End Nav -->
-
-					<!-- Breadcrumb nav for search view -->
-					<!-- <div class="section-title text-center">
-						<h2>Search Results</h2>
-						<ul class="breadcrumb-nav">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li>Seach: Search Term</li>
-						</ul>
-					</div> -->
-					<!-- End Nav -->
-
+					<%- include('../components/breadcrumb', {type}); %>
 				</div>
 			</div>
 		</div>
@@ -172,6 +131,11 @@
 			<div class="row justify-content-center">
 				<div class="col-12 col-lg-8 blog-roll-cards">
 					<div class="row"><!--nested row for blogroll-->
+						<% if(posts.length === 0){ %>
+							<p>
+								No blog posts found matching this query.
+							</p>
+						<% } %>  
 						<% posts.forEach(post => { %>
 							<div class="col-12 col-lg-6">
 								<div class="blog-roll-card">
@@ -179,7 +143,7 @@
 										<h2 class="blog-roll-card-header"><a href="/blog/<%= post.slug%> "><%= post.title %></a></h2>
 										<ul class="blog-roll-card-meta-info">
 											<li>
-												<a href=""><img src="<% post.author.profile_image || '/images/team/team-1.png' %> " alt="#"><%= post.author.first_name + ' ' + post.author.last_name %> </a>
+												<a href=""><img src="<%= post.author.profile_image || '/images/team/team-1.png'%> " alt="#"><%= post.author.first_name + ' ' + post.author.last_name %> </a>
 											</li>
 											<li>
 												<a href=""><i class="lni lni-calendar"></i><%= new Date(post.created).toLocaleString()%>
@@ -187,7 +151,7 @@
 											</li>
 											<% post.tags.forEach(tag => { %>
 												<li>
-													<a href="/blog/tag<%= tag.slug%> "><i class="lni lni-tag"></i><%= tag.name%> </a>
+													<a href="/blog/tag/<%= tag.slug%> "><i class="lni lni-tag"></i><%= tag.name%> </a>
 												</li>
 											<% }) %>  
 										</ul>
@@ -214,8 +178,8 @@
 					<div class="sidebar blog-grid-page">
 						<div class="widget search-widget">
 							<h5 class="widget-title">Search This Site</h5>
-							<form action="#">
-								<input type="text" placeholder="Search Here...">
+							<form action="/blog/search/" method='GET' >
+								<input name='q' id='q' type="text" placeholder="Search Here...">
 								<button type="submit"><i class="lni lni-search-alt"></i></button>
 							</form>
 						</div>
@@ -237,6 +201,7 @@
 			</div>
 		</div>
 	</section>
+	<% } %> 
 	<!-- ========================= blog-section end ========================= -->
 
 
