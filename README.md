@@ -1,6 +1,6 @@
 ![recommended node version](https://img.shields.io/badge/node-v16-green)
 
-# Express + ButterCMS Starter Project
+# Express JS + ButterCMS Starter Project
 
 This Express starter project fully integrates with dynamic sample content from your ButterCMS account, including main menu, pages, blog posts, categories, and tags, all with a beautiful, custom theme with already-implemented search functionality. All of the included sample content is automatically created in your account dashboard when you sign up for a free trial of ButterCMS.
 
@@ -12,8 +12,8 @@ This Express starter project fully integrates with dynamic sample content from y
 First, clone the repo and install the dependencies by running `npm install`
 
 ```bash
-git clone https://github.com/ButterCMS/express-starter-buttercms.git
-cd express-starter-buttercms
+git clone https://github.com/ButterCMS/expressjs-starter-buttercms.git
+cd expressjs-starter-buttercms
 npm install
 ```
 
@@ -22,7 +22,7 @@ npm install
 To fetch your ButterCMS content, add your API token as an environment variable.
 
 ```bash
-$ echo 'EXPRESS_APP_BUTTER_CMS_API_TOKEN=<Your API Token>' >> .env
+$ echo 'EXPRESSJS_APP_BUTTER_CMS_API_TOKEN=<Your API Token>' >> .env
 ```
 
 ### 3. Run local server
@@ -47,4 +47,4 @@ The ButterCMS webhook settings are located at https://buttercms.com/webhooks/
 
 ### 6. Previewing Draft Changes
 
-By default, your starter project is set up to allow previewing of draft changes saved in your ButterCMS.com account. To disable this functionality, set the following value in your .env file: EXPRESS_APP_BUTTER_CMS_PREVIEW=false
+By default, your starter project is set up to allow previewing of draft changes saved in your ButterCMS.com account. To disable this functionality, set the following value in your .env file: EXPRESSJS_APP_BUTTER_CMS_PREVIEW=false
