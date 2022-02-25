@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 8080;
-const butter = !process.env.BUTTER_CMS_TOKEN ?  null : require('buttercms')(process.env.BUTTER_CMS_TOKEN);
+const butter = !process.env.EXPRESS_APP_BUTTER_CMS_API_TOKEN ?  null : require('buttercms')(process.env.EXPRESS_APP_BUTTER_CMS_API_TOKEN, !process.env.EXPRESS_APP_BUTTER_CMS_PREVIEW);
 
 const assetsPath = path.join(__dirname, './assets');
 const viewsPath = path.join(__dirname, "./views");
