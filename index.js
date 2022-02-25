@@ -3,11 +3,13 @@ require('ejs');
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 8080;
+
 const butter = !process.env.EXPRESSJS_APP_BUTTER_CMS_API_TOKEN ?  null : require('buttercms')(process.env.EXPRESSJS_APP_BUTTER_CMS_API_TOKEN, !process.env.EXPRESS_APP_BUTTER_CMS_PREVIEW);
 
 const assetsPath = path.join(__dirname, './assets');
 const viewsPath = path.join(__dirname, "./views");
+
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static(assetsPath));
 
@@ -132,4 +134,4 @@ app.get('/blog/tag/:slug', (req,res) => {
      }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));;
 });
 
-app.listen(port)
+app.listen(PORT)
