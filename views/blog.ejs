@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<!-- SEO component -->
-	<%- include('../components/seo', {type}); %>
+	<%- include('./components/seo.ejs', {type}); %>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="https://buttercms.com/static/v2/images/favicon.png"/>
     <!-- Place favicon.ico in the root directory -->
@@ -120,7 +120,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12">
-					<%- include('../components/breadcrumb', {type}); %>
+					<%- include('./components/breadcrumb.ejs', {type}); %>
 				</div>
 			</div>
 		</div>

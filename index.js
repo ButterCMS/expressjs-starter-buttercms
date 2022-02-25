@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const butter = !process.env.EXPRESSJS_APP_BUTTER_CMS_API_TOKEN ?  null : require('buttercms')(process.env.EXPRESSJS_APP_BUTTER_CMS_API_TOKEN, !process.env.EXPRESS_APP_BUTTER_CMS_PREVIEW);
+const butter = !process.env.BUTTER_CMS_API_KEY ?  null : require('buttercms')(process.env.BUTTER_CMS_API_KEY, !process.env.EXPRESS_APP_BUTTER_CMS_PREVIEW);
 
 const assetsPath = path.join(__dirname, './assets');
 const viewsPath = path.join(__dirname, "./views");
@@ -49,7 +49,7 @@ app.get('/blog', (_,res) => {
             type: 'blog',
             API: true
         });
-    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));;
+    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));
 });
 
 app.get('/blog/search', (req,res) => {
@@ -68,7 +68,7 @@ app.get('/blog/search', (req,res) => {
             query: query.q,
             API: true
         });
-    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));;
+    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));
 });
 
 app.get('/blog/:slug', (req,res) => {
@@ -86,9 +86,9 @@ app.get('/blog/:slug', (req,res) => {
             API: true,
             seo_title: data.data.seo_title,
             meta_description: data.data.meta_description,
-            type: "blog-post"
+            type: "blog-post",
         });
-    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));;
+    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));
 });
 
 app.get('/blog/category/:slug', (req,res) => {
@@ -110,7 +110,7 @@ app.get('/blog/category/:slug', (req,res) => {
             type: 'category',
             API: true
         });
-    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));;
+    }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));
 });
 
 
@@ -129,9 +129,10 @@ app.get('/blog/tag/:slug', (req,res) => {
             posts: data.data.recent_posts,
             slug: data.data.slug,
             name: data.data.name,
-            type: 'tag'
+            type: 'tag',
+            API:true
         });
-     }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));;
+     }).catch(error => error.response.data.detail === 'Invalid token.' && res.render('404'));
 });
 
 app.listen(PORT)

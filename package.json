@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "nodemon index.js",
-    "lint": "npx eslint index.js" 
+    "lint": "npx eslint index.js",
+    "lint:fix": "nxp eslint --fix"
   },
   "dependencies": {
     "buttercms": "^1.2.8",
