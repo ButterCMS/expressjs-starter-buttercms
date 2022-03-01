@@ -37,8 +37,8 @@
           <h3>About Us</h3>
           <ul class="links">
             <% menuItems.forEach(item => { %>
-            <li>
-              <a class="page-scroll active" href="<%= item.url%> "
+            <li class="nav-item">
+              <a class="page-scroll" href="<%= `/${item.url}`%>"
                 ><%= item.label%>
               </a>
             </li>

@@ -37,10 +37,10 @@
         your experience and security.
       </p>
     <![endif]-->
-    <%- include('./components/loader') %> <% if(!API){%> <%-
-    include('./sections/no-api-hero') %> <% } else { %> <%-
+    <% if(API){ %> <%- include('./components/loader') %> <%-
     include('./sections/header', {menuItems}) %> <%- body%> <%-
-    include('./sections/footer', {menuItems}) %> <% } %>
+    include('./sections/footer', {menuItems}) %> <% } else { %> <%-
+    include('no-api-hero') %> <% } %>
 
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top btn-hover">

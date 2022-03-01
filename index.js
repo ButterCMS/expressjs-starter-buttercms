@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
-dotenv.config();
 import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import Butter from 'buttercms';
-const __dirname = path.resolve();
+
+dotenv.config();
+
+// const __dirname = path.resolve();
 const app = express();
 const preview = process.env.EXPRESS_BUTTER_CMS_PREVIEW === 'true' ? 1 : 0;
 
@@ -12,8 +14,8 @@ const butter = !process.env.EXPRESS_BUTTER_CMS_API_KEY
   ? null
   : Butter(process.env.EXPRESS_BUTTER_CMS_API_KEY, preview);
 
-const assetsPath = path.join(__dirname, './assets');
-const viewsPath = path.join(__dirname, './views');
+const assetsPath = path.join(path.resolve(), './assets');
+const viewsPath = path.join(path.resolve(), './views');
 
 const PORT = process.env.PORT || 8080;
 
@@ -25,28 +27,46 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(assetsPath));
 
-app.use(async (req, _, next) => {
-  const menuItems = await butter.content.retrieve(['navigation_menu']);
-  if (req.path === '/') {
-    req.menuItems = menuItems.data.data.navigation_menu[0].menu_items;
+// fetch navigation menu for header and footer on every page
+app.use(async (req, res, next) => {
+  if (!butter) {
     next();
     return;
   }
+  try {
+    const menuItems = await butter.content.retrieve(['navigation_menu']);
+    req.menuItems = menuItems.data.data.navigation_menu[0].menu_items;
+    next();
+  } catch (error) {
+    error.response.data.detail === 'Invalid token.' &&
+      res.render('404', { layout: false });
+  }
+});
 
-  const categories = await butter.category.list();
-  req.categories = categories;
-  req.menuItems = menuItems.data.data.navigation_menu[0].menu_items;
-  next();
+// fetch categories list for all pages except landing page
+app.use(async (req, res, next) => {
+  if (!butter || req.path === '/') {
+    next();
+    return;
+  }
+  try {
+    const categories = await butter.category.list();
+    req.categories = categories;
+    next();
+  } catch (error) {
+    error.response.data.detail === 'Invalid token.' &&
+      res.render('404', { layout: false });
+  }
 });
 
 app.get('/', async (req, res) => {
   if (!butter) {
-    res.render('index', {
+    res.render('no-api-hero', {
       type: 'landing_page',
       API: false,
     });
+    return;
   }
-
   try {
     const postsResponse = await butter.post.list({ page_size: 2, page: 1 });
     const postsData = postsResponse.data;
@@ -61,7 +81,6 @@ app.get('/', async (req, res) => {
     const landingPageSection = landingPageReponse.data.data.fields.body;
 
     res.render('index', {
-      layout: './layout.ejs',
       posts: postsData.data,
       landing_page: landingPageData.data,
       type: 'landing-page',
@@ -77,7 +96,6 @@ app.get('/', async (req, res) => {
 app.get('/blog', async (req, res) => {
   if (!butter) {
     res.render('blog', {
-      layout: './layout.ejs',
       type: 'blog',
       API: false,
     });
@@ -90,7 +108,6 @@ app.get('/blog', async (req, res) => {
     const postResponse = await butter.post.list({ page_size: 10, page: 1 });
     const postData = postResponse.data;
     res.render('blog', {
-      layout: './layout.ejs',
       menuItems,
       posts: postData.data,
       type: 'blog',
@@ -116,7 +133,6 @@ app.get('/blog/search', async (req, res) => {
     const blogSearchResponse = await butter.post.search(query.q);
     const blogSearchData = blogSearchResponse.data;
     res.render('blog', {
-      layout: './layout.ejs',
       posts: blogSearchData.data,
       type: 'search',
       query: query.q,
@@ -145,7 +161,6 @@ app.get('/blog/:slug', async (req, res) => {
     const blogData = blogResponse.data;
 
     res.render('blog-post', {
-      layout: './layout.ejs',
       post: blogData.data,
       API: true,
       seo_title: blogData.data.seo_title,
@@ -178,7 +193,6 @@ app.get('/blog/category/:slug', async (req, res) => {
     const blogData = blogResponse.data;
 
     res.render('blog', {
-      layout: './layout.ejs',
       posts: blogData.data.recent_posts,
       slug: blogData.data.slug,
       name: blogData.data.name,
@@ -210,7 +224,6 @@ app.get('/blog/tag/:slug', async (req, res) => {
     const blogData = blogResponse.data;
 
     res.render('blog', {
-      layout: './layout.ejs',
       posts: blogData.data.recent_posts,
       slug: blogData.data.slug,
       name: blogData.data.name,
@@ -230,6 +243,7 @@ app.get('/:slug', async (req, res) => {
       type: 'landing_page',
       API: false,
     });
+    return;
   }
 
   try {
@@ -246,7 +260,6 @@ app.get('/:slug', async (req, res) => {
     const landingPageSection = landingPageReponse.data.data.fields.body;
 
     res.render('index', {
-      layout: './layout.ejs',
       posts: postsData.data,
       landing_page: landingPageData.data,
       type: 'landing-page',
