@@ -19,8 +19,7 @@
     <div class="row justify-content-center">
       <!-- Renders 2 posts -->
       <% posts.sort((a,b)=> new Date(b.updated) - new Date(a.updated)
-      ).slice(0,2).forEach(function(post){ %> <% console.log('pois',post.slug)
-      %>
+      ).slice(0,2).forEach(function(post){ %>
       <div class="col-lg-4 col-md-8 col-sm-10">
         <div class="single-blog">
           <!-- Renders image only if src exists  -->
