@@ -5,7 +5,7 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
-const preview = !process.env.EXPRESS_BUTTER_CMS_PREVIEW;
+const preview = process.env.EXPRESS_BUTTER_CMS_PREVIEW === 'true' ? 1 : 0;
 
 const butter = !process.env.EXPRESS_BUTTER_CMS_API_KEY
   ? null
