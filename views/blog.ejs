@@ -1,266 +1,78 @@
-<!DOCTYPE html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<!-- SEO component -->
-	<%- include('./components/seo.ejs', {type}); %>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://buttercms.com/static/v2/images/favicon.png"/>
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/lineicons.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-  </head>
-  <body>
-    <!--[if lte IE 9]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-        your experience and security.
-      </p>
-    <![endif]-->
-
-    <!-- ========================= preloader start ========================= -->
-    <div class="preloader">
-		<div class="loader">
-			<div class="spinner">
-				<div class="spinner-container">
-					<div class="spinner-rotator">
-						<div class="spinner-left">
-							<div class="spinner-circle"></div>
-						</div>
-						<div class="spinner-right">
-							<div class="spinner-circle"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<section id="blog-roll" class="blog-roll-nav">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <%- include('./components/breadcrumb.ejs', {type}); %>
+      </div>
     </div>
-	<!-- preloader end -->
-		
+  </div>
+</section>
+<!-- Blog Post -->
+<section class="blog-posts">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8 blog-roll-cards">
+        <div class="row">
+          <!--nested row for blogroll-->
+          <% if(posts.length === 0){ %>
+          <p>No blog posts found matching this query.</p>
+          <% } %> <% posts.forEach(post => { %>
+          <div class="col-12 col-lg-6">
+            <div class="blog-roll-card">
+              <div class="blog-roll-card-meta">
+                <h2 class="blog-roll-card-header">
+                  <a href="/blog/<%= post.slug%> "><%= post.title %></a>
+                </h2>
+                <ul class="blog-roll-card-meta-info">
+                  <li>
+                    <a href=""
+                      ><img
+                        src="<%= post.author.profile_image || '/images/team/team-1.png'%> "
+                        alt="#"
+                      /><%= post.author.first_name + ' ' + post.author.last_name
+                      %>
+                    </a>
+                  </li>
+                  <li>
+                    <a href=""
+                      ><i class="lni lni-calendar"></i><%= new
+                      Date(post.created).toLocaleString()%>
+                    </a>
+                  </li>
+                  <% post.tags.forEach(tag => { %>
+                  <li>
+                    <a href="/blog/tag/<%= tag.slug%>"
+                      ><i class="lni lni-tag"></i><%= tag.name%>
+                    </a>
+                  </li>
+                  <% }) %>
+                </ul>
+              </div>
+              <% if(post.featured_image){ %>
+              <div class="single-post-thumbnail">
+                <img
+                  src="<%= post.featured_image%> "
+                  alt="<%= post.featured_image_alt%> "
+                />
+              </div>
+              <% } %>
 
-	<!-- ========================= header start ========================= -->
-    <header class="header">
-		<div class="navbar-area">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-12">
-						<nav class="navbar navbar-expand-lg">
-							<a class="navbar-brand" href="https://buttercms.com">
-							<img src="https://cdn.buttercms.com/PBral0NQGmmFzV0uG7Q6" alt="Logo" />
-							</a>
-							<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="toggler-icon"></span>
-								<span class="toggler-icon"></span>
-								<span class="toggler-icon"></span>
-							</button>
-											
-							<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-								<div class="ms-auto">
-									<ul id="nav" class="navbar-nav ms-auto">
-										<li class="nav-item">
-											<a class="active" href="/#home">Home</a>
-										</li>
-										<li class="nav-item">
-											<a href="/#about">About</a>
-										</li>
-										<li class="nav-item">
-											<a href="/#features">Features</a>
-										</li>
-										<li class="nav-item">
-											<a href="/#tryit">Try It</a>
-										</li>
-										<li class="nav-item">
-											<a href="/#testimonials">Testimonials</a>
-										</li>
-										<li class="nav-item">
-											<a href="/#blog">Blog</a>
-										</li>
-									</ul>
-								</div>
-							</div> <!-- navbar collapse -->		
-						</nav> <!-- navbar -->
-					</div>
-				</div> <!-- row -->
-			</div> <!-- container -->
-		</div> <!-- navbar area -->
-    </header>
-	<!-- ========================= header end ========================= -->
-
-   <!-- ========================= hero no API token ========================= -->
-	<% if(!API){ %>
-		<section id="home" class="hero-section">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-xl-6 col-lg-6 col-md-10">
-						<div class="hero-content">
-							<h1>Configure your ButterCMS API Token</h1>
-							<p>Please add your API token to <i>.env</i> file.</p>
-							<a target="_blank" href="https://buttercms.com/join/" class="main-btn btn-hover">
-								Get your free API token</a>
-						</div>
-					</div>
-					<div class="col-xxl-6 col-xl-6 col-lg-6">
-						<img width="300" src="https://cdn.buttercms.com/9bPtzdJ6QSWkySNjlmyR" alt="">
-						<div class="hero-image text-center text-lg-end"></div>
-					</div>
-					</div>
-				</div>
-			</section>
-	<% } else { %>  
-		<!-- ========================= hero-section end ========================= -->
-
-	<!-- ========================= blog-roll section start ========================= -->
-
-	<section id="blog-roll" class="blog-roll-nav">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-12">
-					<%- include('./components/breadcrumb.ejs', {type}); %>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Blog Post -->
-	<section class="blog-posts">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-12 col-lg-8 blog-roll-cards">
-					<div class="row"><!--nested row for blogroll-->
-						<% if(posts.length === 0){ %>
-							<p>
-								No blog posts found matching this query.
-							</p>
-						<% } %>  
-						<% posts.forEach(post => { %>
-							<div class="col-12 col-lg-6">
-								<div class="blog-roll-card">
-									<div class="blog-roll-card-meta">
-										<h2 class="blog-roll-card-header"><a href="/blog/<%= post.slug%> "><%= post.title %></a></h2>
-										<ul class="blog-roll-card-meta-info">
-											<li>
-												<a href=""><img src="<%= post.author.profile_image || '/images/team/team-1.png'%> " alt="#"><%= post.author.first_name + ' ' + post.author.last_name %> </a>
-											</li>
-											<li>
-												<a href=""><i class="lni lni-calendar"></i><%= new Date(post.created).toLocaleString()%>
-											</a>
-											</li>
-											<% post.tags.forEach(tag => { %>
-												<li>
-													<a href="/blog/tag/<%= tag.slug%> "><i class="lni lni-tag"></i><%= tag.name%> </a>
-												</li>
-											<% }) %>  
-										</ul>
-									</div>
-									<% if(post.featured_image){ %>
-										<div class="single-post-thumbnail">
-											<img src="<%= post.featured_image %> " alt="<%= post.featured_image_alt%> ">
-										</div>
-									<% } %>  
-									
-									<div class="blog-roll-card-body">
-										<%= post.summary %> 
-									</div>
-									<div class="blog-roll-card-footer text-center">
-										<a href="/blog/<%= post.url%> " class="main-btn btn-hover">Read More</a>
-									</div>
-								</div>
-							</div>
-						<% }) %>  
-					</div>
-				</div>
-				<!-- Widgets Column -->
-				<aside class="col-12 col-lg-4">
-					<div class="sidebar blog-grid-page">
-						<div class="widget search-widget">
-							<h5 class="widget-title">Search This Site</h5>
-							<form action="/blog/search/" method='GET' >
-								<input name='q' id='q' type="text" placeholder="Search Here...">
-								<button type="submit"><i class="lni lni-search-alt"></i></button>
-							</form>
-						</div>
-					</div>
-					 	 
-					<div class="widget categories-widget">
-						<h5 class="widget-title">Categories</h5>
-						<ul class="categories-list">
-							<% posts.forEach(post => { %>
-								<% post.categories.forEach(category => { %>
-									<li>
-										<a href="/blog/category/<%= category.slug%> "><%=category.name%></a>
-									</li>
-								<% }) %> 
-							<% }) %>
-						</ul>
-					</div>
-				</aside>
-			</div>
-		</div>
-	</section>
-	<% } %> 
-	<!-- ========================= blog-section end ========================= -->
-
-
-	<!-- ========================= footer start ========================= -->
-	<footer class="footer pt-120">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-					<div class="footer-widget">
-						<div class="logo">
-							<a href="https://buttercms.com"> <img width="200" src="https://cdn.buttercms.com/PBral0NQGmmFzV0uG7Q6" alt="logo"> </a>
-						</div>
-						<p class="desc">ButterCMS is your content backend. Build better with Butter.</p>
-						<ul class="social-links">
-							<li><a href="#0"><i class="lni lni-facebook"></i></a></li>
-							<li><a href="#0"><i class="lni lni-linkedin"></i></a></li>
-							<li><a href="#0"><i class="lni lni-instagram"></i></a></li>
-							<li><a href="#0"><i class="lni lni-twitter"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-xl-5 col-lg-4 col-md-12 col-sm-12 offset-xl-1">
-					<div class="footer-widget">
-						<h3>About Us</h3>
-						<ul class="links">
-							<li><a href="/#home">Home</a></li>
-							<li><a href="/#about">About</a></li>
-							<li><a href="/#features">Features</a></li>
-							<li><a href="/#tryit">Try It</a></li>
-							<li><a href="/#testimonials">Testimonials</a></li>
-							<li><a href="/#blog">Blog</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="col-xl-3 col-lg-4 col-md-6">
-					<div class="footer-widget">
-						<h3>Subscribe Newsletter</h3>
-						<form action="#">
-							<input type="email" placeholder="Email">
-							<button class="main-btn btn-hover">Subscribe</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- ========================= footer end ========================= -->
-
-
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top btn-hover">
-      <i class="lni lni-chevron-up"></i>
-    </a>
-
-    <!-- =================== JS Blog Template ========================= -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/polyfill.js"></script>
-    <script src="/js/main.js"></script>
-
-  </body>
-</html>
+              <div class="blog-roll-card-body"><%= post.summary %></div>
+              <div class="blog-roll-card-footer text-center">
+                <a href="/blog/<%= post.url%> " class="main-btn btn-hover"
+                  >Read More</a
+                >
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <!-- Widgets Column -->
+      <aside class="col-12 col-lg-4">
+        <%- include('./components/search.ejs', {categories}) %> <%-
+        include('./components/categories.ejs', {categories}) %>
+      </aside>
+    </div>
+  </div>
+</section>

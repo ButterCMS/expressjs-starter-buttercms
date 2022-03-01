@@ -1,0 +1,72 @@
+<section id="<%= field.scroll_anchor_id %> " class="testimonial-section mt-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-9">
+        <div class="testimonial-active-wrapper">
+          <div class="section-title text-center">
+            <h2 class="mb-20"><%= field.headline%></h2>
+          </div>
+
+          <div class="testimonial-active">
+            <% field.testimonial.forEach(testimonial => { %>
+            <div class="single-testimonial">
+              <div class="quote">
+                <i class="lni lni-quotation"></i>
+              </div>
+              <div class="content">
+                <p><%= testimonial.quote%></p>
+              </div>
+              <div class="info">
+                <h6><%= testimonial.name%></h6>
+                <p><%= testimonial.title%></p>
+              </div>
+            </div>
+            <% }) %>
+            <div class="single-testimonial">
+              <div class="quote">
+                <i class="lni lni-quotation"></i>
+              </div>
+              <div class="content">
+                <p>
+                  A breath of fresh air in the CMS world, once you go headless
+                  with butter you'll never go back.
+                </p>
+              </div>
+              <div class="info">
+                <h6>Bryan MacMillan</h6>
+                <p>IT Admin</p>
+              </div>
+            </div>
+            <div class="single-testimonial">
+              <div class="quote">
+                <i class="lni lni-quotation"></i>
+              </div>
+              <div class="content">
+                <p>Super Flexible CMS Solution</p>
+              </div>
+              <div class="info">
+                <h6>Hampton Catlin</h6>
+                <p>Creator of Sass and Haml</p>
+              </div>
+            </div>
+            <div class="single-testimonial">
+              <div class="quote">
+                <i class="lni lni-quotation"></i>
+              </div>
+              <div class="content">
+                <p>
+                  I was able to quickly draft new pages, circulate them to the
+                  team, edit them, and then ultimately publish intuitively.
+                </p>
+              </div>
+              <div class="info">
+                <h6>Kim Kohatsu</h6>
+                <p>CMO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
