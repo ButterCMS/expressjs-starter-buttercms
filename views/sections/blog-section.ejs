@@ -19,7 +19,8 @@
     <div class="row justify-content-center">
       <!-- Renders 2 posts -->
       <% posts.sort((a,b)=> new Date(b.updated) - new Date(a.updated)
-      ).slice(0,2).forEach(function(post){ %>
+      ).slice(0,2).forEach(function(post){ %> <% console.log('pois',post.slug)
+      %>
       <div class="col-lg-4 col-md-8 col-sm-10">
         <div class="single-blog">
           <!-- Renders image only if src exists  -->
@@ -35,12 +36,12 @@
           <% } %>
           <div class="blog-body">
             <h5 class="package-name">
-              <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+              <a href="/blog/<%= post.slug%>"><%= post.title %></a>
             </h5>
             <p><%= post.summary %></p>
           </div>
           <div class="blog-footer">
-            <a href="/blog/<%= post.slug %>" class="main-btn btn-hover"
+            <a href="/blog/<%= post.slug%>" class="main-btn btn-hover"
               >Read More</a
             >
           </div>
