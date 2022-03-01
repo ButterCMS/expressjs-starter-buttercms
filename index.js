@@ -1,15 +1,16 @@
-require('dotenv').config();
-require('ejs');
-const express = require('express');
-const path = require('path');
-const expressLayouts = require('express-ejs-layouts');
-
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import path from 'path';
+import expressLayouts from 'express-ejs-layouts';
+import Butter from 'buttercms';
+const __dirname = path.resolve();
 const app = express();
 const preview = process.env.EXPRESS_BUTTER_CMS_PREVIEW === 'true' ? 1 : 0;
 
 const butter = !process.env.EXPRESS_BUTTER_CMS_API_KEY
   ? null
-  : require('buttercms')(process.env.EXPRESS_BUTTER_CMS_API_KEY, preview);
+  : Butter(process.env.EXPRESS_BUTTER_CMS_API_KEY, preview);
 
 const assetsPath = path.join(__dirname, './assets');
 const viewsPath = path.join(__dirname, './views');

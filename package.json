@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --experimental-modules index.js",
     "lint": "npx eslint index.js",
     "lint:fix": "npx eslint --fix"
   },
@@ -18,5 +18,6 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1"
-  }
+  },
+  "type": "module"
 }
