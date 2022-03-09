@@ -13,5 +13,5 @@
     "prefer-destructuring": "off",
     "no-unused-expressions": "off"
   },
-  "plugins": ["prettier"]
+  "plugins": ["prettier", "ejs"]
 }

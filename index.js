@@ -3,10 +3,10 @@ import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import Butter from 'buttercms';
+import { renderIndexPage } from './utils/functions.js';
 
 dotenv.config();
 
-// const __dirname = path.resolve();
 const app = express();
 const preview = process.env.EXPRESS_BUTTER_CMS_PREVIEW === 'true' ? 1 : 0;
 
@@ -38,8 +38,7 @@ app.use(async (req, res, next) => {
     req.menuItems = menuItems.data.data.navigation_menu[0].menu_items;
     next();
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' &&
-      res.render('404', { layout: false });
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -54,43 +53,12 @@ app.use(async (req, res, next) => {
     req.categories = categories;
     next();
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' &&
-      res.render('404', { layout: false });
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
 app.get('/', async (req, res) => {
-  if (!butter) {
-    res.render('no-api-hero', {
-      type: 'landing_page',
-      API: false,
-    });
-    return;
-  }
-  try {
-    const postsResponse = await butter.post.list({ page_size: 2, page: 1 });
-    const postsData = postsResponse.data;
-
-    const landingPageReponse = await butter.page.retrieve(
-      'landing-page',
-      'landing-page-with-components'
-    );
-
-    const landingPageData = landingPageReponse.data;
-    const menuItems = req.menuItems;
-    const landingPageSection = landingPageReponse.data.data.fields.body;
-
-    res.render('index', {
-      posts: postsData.data,
-      landing_page: landingPageData.data,
-      type: 'landing-page',
-      API: true,
-      menuItems,
-      fields: landingPageSection,
-    });
-  } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
-  }
+  renderIndexPage(req, res, butter);
 });
 
 app.get('/blog', async (req, res) => {
@@ -115,7 +83,7 @@ app.get('/blog', async (req, res) => {
       categories,
     });
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -141,7 +109,7 @@ app.get('/blog/search', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -170,7 +138,7 @@ app.get('/blog/:slug', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -202,7 +170,7 @@ app.get('/blog/category/:slug', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -233,43 +201,16 @@ app.get('/blog/tag/:slug', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
-app.get('/:slug', async (req, res) => {
-  if (!butter) {
-    res.render('index', {
-      type: 'landing_page',
-      API: false,
-    });
-    return;
-  }
+app.get('/:slug', (req, res) => {
+  renderIndexPage(req, res, butter);
+});
 
-  try {
-    const postsResponse = await butter.post.list({ page_size: 2, page: 1 });
-    const postsData = postsResponse.data;
-
-    const landingPageReponse = await butter.page.retrieve(
-      'landing-page',
-      'landing-page-with-components'
-    );
-
-    const landingPageData = landingPageReponse.data;
-    const menuItems = req.menuItems;
-    const landingPageSection = landingPageReponse.data.data.fields.body;
-
-    res.render('index', {
-      posts: postsData.data,
-      landing_page: landingPageData.data,
-      type: 'landing-page',
-      API: true,
-      menuItems,
-      fields: landingPageSection,
-    });
-  } catch (error) {
-    error.response.data.detail === 'Invalid token.' && res.render('404');
-  }
+app.get('*', (_, res) => {
+  res.render('404', { layout: false, type: '404' });
 });
 
 app.listen(PORT);

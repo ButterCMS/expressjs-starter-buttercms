@@ -30,7 +30,7 @@ $ echo 'EXPRESS_BUTTER_CMS_API_KEY=<Your API Token>' >> .env
 To view the app in the browser, you'll need to run the local development server:
 
 ```bash
-$ npm start
+$ npm run dev
 ```
 
 Congratulations! Your starter project is now live. To view your project, point your browser to [address].
