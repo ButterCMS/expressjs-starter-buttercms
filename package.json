@@ -2,8 +2,8 @@
   "scripts": {
     "start": "node --experimental-modules index.js",
     "dev": "nodemon --experimental-modules index.js",
-    "lint": "npx eslint index.js",
-    "lint:fix": "npx eslint --fix"
+    "lint": "eslint index.js",
+    "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "buttercms": "^1.2.8",

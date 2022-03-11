@@ -16,7 +16,9 @@
           <!--nested row for blogroll-->
           <% if(posts.length === 0){ %>
           <p>No blog posts found matching this query.</p>
-          <% } %> <% posts.forEach(post => { %>
+          <% } %>
+
+          <% posts.forEach(post => { %>
           <div class="col-12 col-lg-6">
             <div class="blog-roll-card">
               <div class="blog-roll-card-meta">
@@ -25,24 +27,22 @@
                 </h2>
                 <ul class="blog-roll-card-meta-info">
                   <li>
-                    <a href=""
-                      ><img
-                        src="<%= post.author.profile_image || '/images/team/team-1.png'%> "
-                        alt="#"
-                      /><%= post.author.first_name + ' ' + post.author.last_name
-                      %>
+                    <a href="">
+                      <img src="<%= post.author.profile_image || '/images/team/team-1.png'%> " alt="#" />
+                      <%= post.author.first_name + ' ' + post.author.last_name%>
                     </a>
                   </li>
                   <li>
-                    <a href=""
-                      ><i class="lni lni-calendar"></i><%= new
-                      Date(post.created).toLocaleString()%>
+                    <a href="">
+                      <i class="lni lni-calendar"></i>
+                      <%= new Date(post.created).toLocaleString()%>
                     </a>
                   </li>
                   <% post.tags.forEach(tag => { %>
                   <li>
-                    <a href="/blog/tag/<%= tag.slug%>"
-                      ><i class="lni lni-tag"></i><%= tag.name%>
+                    <a href="/blog/tag/<%= tag.slug%>">
+                      <i class="lni lni-tag"></i>
+                      <%= tag.name%>
                     </a>
                   </li>
                   <% }) %>
@@ -50,18 +50,13 @@
               </div>
               <% if(post.featured_image){ %>
               <div class="single-post-thumbnail">
-                <img
-                  src="<%= post.featured_image%> "
-                  alt="<%= post.featured_image_alt%> "
-                />
+                <img src="<%= post.featured_image%> " alt="<%= post.featured_image_alt%> " />
               </div>
               <% } %>
 
               <div class="blog-roll-card-body"><%= post.summary %></div>
               <div class="blog-roll-card-footer text-center">
-                <a href="/blog/<%= post.slug%> " class="main-btn btn-hover"
-                  >Read More</a
-                >
+                <a href="/blog/<%= post.slug%> " class="main-btn btn-hover">Read More</a>
               </div>
             </div>
           </div>

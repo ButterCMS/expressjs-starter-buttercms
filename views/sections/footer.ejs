@@ -5,12 +5,7 @@
         <div class="footer-widget">
           <div class="logo">
             <a href="https://buttercms.com">
-              <img
-                width="200"
-                src="https://cdn.buttercms.com/PBral0NQGmmFzV0uG7Q6"
-                alt="logo"
-                loading="lazy"
-              />
+              <img width="200" src="https://cdn.buttercms.com/PBral0NQGmmFzV0uG7Q6" alt="logo" loading="lazy" />
             </a>
           </div>
           <p class="desc">
@@ -36,10 +31,10 @@
         <div class="footer-widget">
           <h3>About Us</h3>
           <ul class="links">
-            <% menuItems.forEach(item => { %>
+            <% menuItems.forEach(item=> { %>
             <li class="nav-item">
-              <a class="page-scroll" href="<%= `/${item.url}`%>"
-                ><%= item.label%>
+              <a class="page-scroll" href="<%= `/${item.url}`%>">
+                <%= item.label%>
               </a>
             </li>
             <% }) %>

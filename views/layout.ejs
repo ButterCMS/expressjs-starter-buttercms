@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html class="no-js" lang="">
-  <%- include('./head') %>
-  <body>
-    <!--[if lte IE 9]>
+<%- include('./head') %>
+
+<body>
+  <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
         your experience and security.
       </p>
     <![endif]-->
-    <% if(API){ %> <%- include('./components/loader') %> <%-
-    include('./sections/header', {menuItems}) %> <%- body%> <%-
-    include('./sections/footer', {menuItems}) %> <% } else { %> <%-
-    include('no-api-hero') %> <% } %>
+  <% if(API){ %>
+  <%- include('./components/loader') %>
+  <%- include('./sections/header', {menuItems}) %>
+  <%- body%>
+  <%- include('./sections/footer', {menuItems}) %>
+  <% } else { %>
+  <%- include('no-api-hero') %>
+  <% } %>
 
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top btn-hover">
-      <i class="lni lni-chevron-up"></i>
-    </a>
+  <!-- ========================= scroll-top ========================= -->
+  <a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+  </a>
 
-    <!-- =================== JS All Templates ========================= -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/polyfill.js"></script>
-    <script src="/js/main.js"></script>
+  <!-- =================== JS All Templates ========================= -->
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/polyfill.js"></script>
+  <script src="/js/main.js"></script>
 
-    <!-- ================= JS Index HTML only ========================= -->
-    <script src="/js/tiny-slider.js"></script>
-    <script src="/js/client-slider.js"></script>
-    <script src="/js/section-menu.js"></script>
-  </body>
+  <!-- ================= JS Index HTML only ========================= -->
+  <script src="/js/tiny-slider.js"></script>
+  <script src="/js/client-slider.js"></script>
+  <script src="/js/section-menu.js"></script>
+</body>
+
 </html>
