@@ -205,7 +205,7 @@ app.get('/blog/tag/:slug', async (req, res) => {
   }
 });
 
-app.get('/:slug', (req, res) => {
+app.get('/landing-page/:slug', (req, res) => {
   renderIndexPage(req, res, butter);
 });
 
