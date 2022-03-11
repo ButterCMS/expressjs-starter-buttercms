@@ -4,7 +4,8 @@ This ExpressJS starter project fully integrates with dynamic sample content from
 
 [View our live demo hosted at Vercel](https://express-starter-buttercms-dxheroes.vercel.app), or you can click a button below to deploy your own copy of our starter project to the provider of your choice.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FButterCMS%2Fexpressjs-starter-buttercms&env=REACT_APP_BUTTER_CMS_API_KEY&envDescription=Your%20ButterCMS%20API%20Token&envLink=https%3A%2F%2Fbuttercms.com%2Fsettings%2F&project-name=expressjs-starter-buttercms&repo-name=expressjs-starter-buttercms&redirect-url=https%3A%2F%2Fbuttercms.com%2Fonboarding%2Fvercel-starter-deploy-callback%2F&production-deploy-hook=Deploy%20Triggered%20from%20ButterCMS&demo-title=ButterCMS%20React%20Starter&demo-description=Fully%20integrated%20with%20your%20ButterCMS%20account&demo-url=https%3A%2F%2Fexpressjs-starter-buttercms-demo.vercel.app%2F&demo-image=https://cdn.buttercms.com/r0tGK8xFRti2iRKBJ0eY&repository-name=expressjs-starter-buttercms)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FButterCMS%2Fexpressjs-starter-buttercms&env=EXPRESSJS_BUTTER_CMS_API_KEY&envDescription=Your%20ButterCMS%20API%20Token&envLink=https%3A%2F%2Fbuttercms.com%2Fsettings%2F&project-name=expressjs-starter-buttercms&repo-name=expressjs-starter-buttercms&redirect-url=https%3A%2F%2Fbuttercms.com%2Fonboarding%2Fvercel-starter-deploy-callback%2F&production-deploy-hook=Deploy%20Triggered%20from%20ButterCMS&demo-title=ButterCMS%20Express%20Starter&demo-description=Fully%20integrated%20with%20your%20ButterCMS%20account&demo-url=https%3A%2F%2Fexpressjs-starter-buttercms-demo.vercel.app%2F&demo-image=https://cdn.buttercms.com/r0tGK8xFRti2iRKBJ0eY&repository-name=expressjs-starter-buttercms) 
+
 
 ## 1. Installation
 
@@ -18,7 +19,7 @@ npm install
 
 ### 2. Set API Token
 
-To fetch your ButterCMS content, add your API token as an environment variable.
+To fetch your ButterCMS content, add your API token as an environment variable. 
 
 ```bash
 $ echo 'EXPRESS_BUTTER_CMS_API_KEY=<Your API Token>' >> .env
@@ -43,3 +44,4 @@ Deploy your Express JS app using Vercel, the creators of Next.js. With the click
 ### 5. Previewing Draft Changes
 
 By default, your starter project is set up to allow previewing of draft changes saved in your ButterCMS.com account. To disable this functionality, set the following value in your .env file: EXPRESS_BUTTER_CMS_PREVIEW=false
+
