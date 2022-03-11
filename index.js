@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import Butter from 'buttercms';
-import { renderIndexPage } from './utils/functions';
+import { renderIndexPage } from './utils/functions.js';
 
 dotenv.config();
 
