@@ -8,7 +8,7 @@ import { renderIndexPage } from './utils/functions.js';
 dotenv.config();
 
 const app = express();
-const preview = process.env.EXPRESS_BUTTER_CMS_PREVIEW === 'true' ? 1 : 0;
+const preview = process.env.EXPRESS_BUTTER_CMS_PREVIEW === 'false' ? 0 : 1;
 
 const butter = !process.env.EXPRESS_BUTTER_CMS_API_KEY
   ? null
@@ -17,7 +17,7 @@ const butter = !process.env.EXPRESS_BUTTER_CMS_API_KEY
 const assetsPath = path.join(path.resolve(), './assets');
 const viewsPath = path.join(path.resolve(), './views');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 // template engine setting
 app.use(expressLayouts);

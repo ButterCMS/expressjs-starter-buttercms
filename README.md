@@ -32,7 +32,7 @@ To view the app in the browser, you'll need to run the local development server:
 $ npm run dev
 ```
 
-Congratulations! Your starter project is now live. To view your project, point your browser to http://localhost:8080/.
+Congratulations! Your starter project is now live. To view your project, point your browser to http://localhost:3000/.
 
 ## 4. Deploy on Vercel
 
