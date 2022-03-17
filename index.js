@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import Butter from 'buttercms';
-import { renderIndexPage } from './utils/functions.js';
+import { renderLandingPage } from './utils/functions.js';
 
 dotenv.config();
 
@@ -58,7 +58,7 @@ app.use(async (req, res, next) => {
 });
 
 app.get('/', async (req, res) => {
-  renderIndexPage(req, res, butter);
+  renderLandingPage(req, res, butter);
 });
 
 app.get('/blog', async (req, res) => {
@@ -211,7 +211,7 @@ app.get('/blog/tag/:slug', async (req, res) => {
 });
 
 app.get('/landing-page/:slug', (req, res) => {
-  renderIndexPage(req, res, butter);
+  renderLandingPage(req, res, butter, 'own-landing-page');
 });
 
 app.get('*', (_, res) => {

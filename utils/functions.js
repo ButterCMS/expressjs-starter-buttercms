@@ -1,4 +1,4 @@
-export const renderIndexPage = async (req, res, butter) => {
+export const renderLandingPage = async (req, res, butter, typeOfPage) => {
   if (!butter) {
     res.render('no-api-hero', {
       type: 'landing_page',
@@ -6,13 +6,16 @@ export const renderIndexPage = async (req, res, butter) => {
     });
     return;
   }
+
+  const landingPageUrl = req.url.includes('landing-page') ? req.params.slug : 'landing-page-with-components';
+
   try {
     const postsResponse = await butter.post.list({ page_size: 2, page: 1 });
     const postsData = postsResponse.data;
 
     const landingPageReponse = await butter.page.retrieve(
       'landing-page',
-      'landing-page-with-components'
+      landingPageUrl
     );
 
     const landingPageData = landingPageReponse.data;
