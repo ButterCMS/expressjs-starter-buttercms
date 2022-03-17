@@ -19,6 +19,7 @@ export const renderIndexPage = async (req, res, butter) => {
     const menuItems = req.menuItems;
     const landingPageSection = landingPageReponse.data.data.fields.body;
 
+
     res.render('index', {
       posts: postsData.data,
       landing_page: landingPageData.data,

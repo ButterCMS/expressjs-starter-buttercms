@@ -65,7 +65,7 @@ app.get('/blog', async (req, res) => {
   if (!butter) {
     res.render('no-api-hero', {
       type: 'blog',
-      API: false
+      API: false,
     });
     return;
   }
@@ -119,7 +119,7 @@ app.get('/blog/:slug', async (req, res) => {
   if (!butter) {
     res.render('no-api-hero', {
       type: 'blog-post',
-      API: false
+      API: false,
     });
     return;
   }
@@ -149,7 +149,7 @@ app.get('/blog/category/:slug', async (req, res) => {
   if (!butter) {
     res.render('no-api-hero', {
       type: 'blog',
-      API: false
+      API: false,
     });
     return;
   }
@@ -182,7 +182,7 @@ app.get('/blog/tag/:slug', async (req, res) => {
   if (!butter) {
     res.render('no-api-hero', {
       type: 'blog',
-      API: false
+      API: false,
     });
     return;
   }
@@ -200,13 +200,13 @@ app.get('/blog/tag/:slug', async (req, res) => {
       posts: blogData.data.recent_posts,
       slug: blogData.data.slug,
       name: blogData.data.name,
-      type: 'tag', 
+      type: 'tag',
       API: true,
       categories,
       menuItems,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404', API:false });
+    error.response && res.render('404', { layout: false, type: '404' });
   }
 });
 
