@@ -63,10 +63,11 @@ app.get('/', async (req, res) => {
 
 app.get('/blog', async (req, res) => {
   if (!butter) {
-    res.render('blog', {
+    res.render('no-api-hero', {
       type: 'blog',
-      API: false,
+      API: false
     });
+    return;
   }
 
   const categories = req.categories.data.data;
@@ -89,10 +90,11 @@ app.get('/blog', async (req, res) => {
 
 app.get('/blog/search', async (req, res) => {
   if (!butter) {
-    res.render('search', {
+    res.render('no-api-hero', {
       type: 'search',
       API: false,
     });
+    return;
   }
   const categories = req.categories.data.data;
   const query = req.query;
@@ -115,10 +117,11 @@ app.get('/blog/search', async (req, res) => {
 
 app.get('/blog/:slug', async (req, res) => {
   if (!butter) {
-    res.render('blog-post', {
+    res.render('no-api-hero', {
       type: 'blog-post',
-      API: false,
+      API: false
     });
+    return;
   }
   const categories = req.categories.data.data;
   const slug = req.params.slug;
@@ -144,10 +147,11 @@ app.get('/blog/:slug', async (req, res) => {
 
 app.get('/blog/category/:slug', async (req, res) => {
   if (!butter) {
-    res.render('blog', {
+    res.render('no-api-hero', {
       type: 'blog',
-      API: false,
+      API: false
     });
+    return;
   }
 
   const categories = req.categories.data.data;
@@ -176,10 +180,11 @@ app.get('/blog/category/:slug', async (req, res) => {
 
 app.get('/blog/tag/:slug', async (req, res) => {
   if (!butter) {
-    res.render('blog', {
+    res.render('no-api-hero', {
       type: 'blog',
-      API: false,
+      API: false
     });
+    return;
   }
   const categories = req.categories.data.data;
   const slug = req.params.slug;
@@ -195,13 +200,13 @@ app.get('/blog/tag/:slug', async (req, res) => {
       posts: blogData.data.recent_posts,
       slug: blogData.data.slug,
       name: blogData.data.name,
-      type: 'tag',
+      type: 'tag', 
       API: true,
       categories,
       menuItems,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.response && res.render('404', { layout: false, type: '404', API:false });
   }
 });
 
