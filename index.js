@@ -61,7 +61,7 @@ app.use(async (req, res, next) => {
 
 app.use((req, res, next) => {
     const urlPath = req.path;
-    if(urlPath.at(-1) !== '/'){
+    if(urlPath[urlPath.length - 1] !== '/'){
       const newPath = `${urlPath}/`
       res.redirect(301, newPath)
     } else {
