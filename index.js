@@ -115,7 +115,7 @@ app.get('/blog/search', async (req, res) => {
   }
 });
 
-app.get('/blog/:slug', async (req, res) => {
+app.get('/blog/:slug/', async (req, res) => {
   if (!butter) {
     res.render('no-api-hero', {
       type: 'blog-post',
@@ -210,8 +210,8 @@ app.get('/blog/tag/:slug', async (req, res) => {
   }
 });
 
-app.get('/landing-page/:slug', (req, res) => {
-  renderLandingPage(req, res, butter, 'own-landing-page');
+app.get('/:pageType/:slug', (req, res) => {
+  renderLandingPage(req, res, butter);
 });
 
 app.get('*', (_, res) => {
