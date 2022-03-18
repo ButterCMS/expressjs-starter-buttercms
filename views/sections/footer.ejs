@@ -33,8 +33,11 @@
           <ul class="links">
             <% menuItems.forEach(item=> { %>
             <li class="nav-item">
-              <a class="page-scroll" href="<%= `/${item.url}`%>">
-                <%= item.label%>
+              <a class="page-scroll" href="<% if(type === 'landing-page'){ %>
+                <%= item.url %> 
+                <% } else { %>
+                <%= " /" + item.url %>
+                  <% } %>"><%= item.label%>
               </a>
             </li>
             <% }) %>
