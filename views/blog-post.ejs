@@ -26,11 +26,12 @@
         <div class="single-post">
           <div class="single-post-meta">
             <h2 class="single-post-header">
-              <%= post.title%>
+              <%= post.title %>
             </h2>
             <ul class="single-post-meta-info">
               <li>
-                <a href="javascript:void(0)"><img src="<%= post.author.profile_image || '/images/team/team-1.png' %> " alt="#">
+                <a href="javascript:void(0)">
+                  <img src="<%= post.author.profile_image || '/images/team/team-1.png' %> " alt="#">
                   <%= post.author.first_name + ' ' + post.author.last_name%>
                 </a>
               </li>
@@ -51,7 +52,7 @@
           </div>
           <% if(post.featured_image){ %>
           <div class="single-post-thumbnail">
-            <img src="<%= post.featured_image%> " alt="<%= post.featured_image_alt  %> ">
+            <img src="<%= post.featured_image %>" alt="<%= post.featured_image_alt %>">
           </div>
           <% } %>
           <div class="single-post-body">

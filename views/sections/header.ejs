@@ -8,7 +8,15 @@
             <a class="navbar-brand" href="https://buttercms.com">
               <img src="https://cdn.buttercms.com/PBral0NQGmmFzV0uG7Q6" alt="Logo" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button 
+              class="navbar-toggler" 
+              type="button" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#navbarSupportedContent" 
+              aria-controls="navbarSupportedContent" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation"
+            >
               <span class="toggler-icon"></span>
               <span class="toggler-icon"></span>
               <span class="toggler-icon"></span>
@@ -17,7 +25,7 @@
             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
               <div class="ms-auto">
                 <ul id="nav" class="navbar-nav ms-auto">
-                  <% menuItems.forEach(item=> { %>
+                  <% menuItems.forEach(item => { %>
                   <li class="nav-item">
                     <a class="page-scroll" href="<% if(type === 'landing-page'){ %>
                       <%= item.url %> 

@@ -23,19 +23,19 @@
             <div class="blog-roll-card">
               <div class="blog-roll-card-meta">
                 <h2 class="blog-roll-card-header">
-                  <a href="/blog/<%= post.slug%>"><%= post.title %></a>
+                  <a href="/blog/<%= post.slug %>"><%= post.title %></a>
                 </h2>
                 <ul class="blog-roll-card-meta-info">
                   <li>
-                    <a href="">
+                    <a href="javascript:void(0)">
                       <img src="<%= post.author.profile_image || '/images/team/team-1.png'%> " alt="#" />
                       <%= post.author.first_name + ' ' + post.author.last_name%>
                     </a>
                   </li>
                   <li>
-                    <a href="">
+                    <a href="javascript:void(0)">
                       <i class="lni lni-calendar"></i>
-                      <%= new Date(post.created).toLocaleString()%>
+                      <%= new Date(post.created).toLocaleString() %>
                     </a>
                   </li>
                   <% post.tags.forEach(tag => { %>
@@ -50,13 +50,13 @@
               </div>
               <% if(post.featured_image){ %>
               <div class="single-post-thumbnail">
-                <img src="<%= post.featured_image%> " alt="<%= post.featured_image_alt%> " />
+                <img src="<%= post.featured_image %> " alt="<%= post.featured_image_alt %>" />
               </div>
               <% } %>
 
               <div class="blog-roll-card-body"><%= post.summary %></div>
               <div class="blog-roll-card-footer text-center">
-                <a href="/blog/<%= post.slug%> " class="main-btn btn-hover">Read More</a>
+                <a href="/blog/<%= post.slug %> " class="main-btn btn-hover">Read More</a>
               </div>
             </div>
           </div>
