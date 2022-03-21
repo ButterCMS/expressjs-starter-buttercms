@@ -4,14 +4,15 @@
     "commonjs": true,
     "es2021": true
   },
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb-base", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": "off",
     "prefer-destructuring": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "import/extensions":"off"
   },
-  "plugins": ["ejs"]
+  "plugins": ["ejs","prettier"]
 }

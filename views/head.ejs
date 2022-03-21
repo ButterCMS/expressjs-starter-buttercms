@@ -3,7 +3,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <!-- SEO component -->
 
-  <% if(type){ %>
+  <% if(type !== '404'){ %>
   <%- include('./components/seo', {type}); %>
   <% } %>
   <frame http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://buttercms.com;"></frame>

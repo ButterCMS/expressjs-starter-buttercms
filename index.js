@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import Butter from 'buttercms';
-import { renderIndexPage } from './utils/functions.js';
+import { renderLandingPage } from './utils/functions.js';
 
 dotenv.config();
 
@@ -26,6 +26,8 @@ app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 
 app.use(express.static(assetsPath));
+
+
 
 // fetch navigation menu for header and footer on every page
 app.use(async (req, res, next) => {
@@ -57,16 +59,27 @@ app.use(async (req, res, next) => {
   }
 });
 
+app.use((req, res, next) => {
+    const urlPath = req.path;
+    if(urlPath[urlPath.length - 1] !== '/'){
+      const newPath = `${urlPath}/`
+      res.redirect(301, newPath)
+    } else {
+      next()
+    }
+});
+
 app.get('/', async (req, res) => {
-  renderIndexPage(req, res, butter);
+  renderLandingPage(req, res, butter);
 });
 
 app.get('/blog', async (req, res) => {
   if (!butter) {
-    res.render('blog', {
+    res.render('no-api-hero', {
       type: 'blog',
       API: false,
     });
+    return;
   }
 
   const categories = req.categories.data.data;
@@ -89,10 +102,11 @@ app.get('/blog', async (req, res) => {
 
 app.get('/blog/search', async (req, res) => {
   if (!butter) {
-    res.render('search', {
+    res.render('no-api-hero', {
       type: 'search',
       API: false,
     });
+    return;
   }
   const categories = req.categories.data.data;
   const query = req.query;
@@ -113,12 +127,13 @@ app.get('/blog/search', async (req, res) => {
   }
 });
 
-app.get('/blog/:slug', async (req, res) => {
+app.get('/blog/:slug/', async (req, res) => {
   if (!butter) {
-    res.render('blog-post', {
+    res.render('no-api-hero', {
       type: 'blog-post',
       API: false,
     });
+    return;
   }
   const categories = req.categories.data.data;
   const slug = req.params.slug;
@@ -144,10 +159,11 @@ app.get('/blog/:slug', async (req, res) => {
 
 app.get('/blog/category/:slug', async (req, res) => {
   if (!butter) {
-    res.render('blog', {
+    res.render('no-api-hero', {
       type: 'blog',
       API: false,
     });
+    return;
   }
 
   const categories = req.categories.data.data;
@@ -176,10 +192,11 @@ app.get('/blog/category/:slug', async (req, res) => {
 
 app.get('/blog/tag/:slug', async (req, res) => {
   if (!butter) {
-    res.render('blog', {
+    res.render('no-api-hero', {
       type: 'blog',
       API: false,
     });
+    return;
   }
   const categories = req.categories.data.data;
   const slug = req.params.slug;
@@ -205,8 +222,8 @@ app.get('/blog/tag/:slug', async (req, res) => {
   }
 });
 
-app.get('/landing-page/:slug', (req, res) => {
-  renderIndexPage(req, res, butter);
+app.get('/:pageType/:slug', (req, res) => {
+  renderLandingPage(req, res, butter);
 });
 
 app.get('*', (_, res) => {
