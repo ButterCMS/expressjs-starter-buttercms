@@ -27,8 +27,6 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(assetsPath));
 
-
-
 // fetch navigation menu for header and footer on every page
 app.use(async (req, res, next) => {
   if (!butter) {
@@ -60,13 +58,13 @@ app.use(async (req, res, next) => {
 });
 
 app.use((req, res, next) => {
-    const urlPath = req.path;
-    if(urlPath[urlPath.length - 1] !== '/'){
-      const newPath = `${urlPath}/`
-      res.redirect(301, newPath)
-    } else {
-      next()
-    }
+  const urlPath = req.path;
+  if (urlPath[urlPath.length - 1] !== '/') {
+    const newPath = `${urlPath}/`
+    res.redirect(301, newPath)
+  } else {
+    next()
+  }
 });
 
 app.get('/', async (req, res) => {
