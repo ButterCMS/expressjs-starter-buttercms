@@ -1,0 +1,23 @@
+{
+    "name": "ButterCMS ExpressJS Starter Project ",
+    "description": "Drop-in proof-of-concept Express.js app, fully integrated with your ButterCMS account.",
+    "repository": "https://github.com/ButterCMS/expressjs-starter-buttercms",
+    "logo": "https://cdn.buttercms.com/R3fbtvoRT2CqEQSmk8hb",
+    "keywords": [
+        "Express.js",
+        "buttercms",
+        "cms",
+        "blog"
+    ],
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        }
+    ],
+    "env": {
+        "EXPRESS_BUTTER_CMS_API_KEY": {
+            "description": "The API token of your ButterCMS account",
+            "value": ""
+        }
+    }
+}
