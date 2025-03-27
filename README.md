@@ -1,8 +1,17 @@
-![recommended node version](https://img.shields.io/badge/node-v16-green)
+![recommended node version](https://img.shields.io/badge/node-v20.18.0%2B-green)
 
 # ExpressJS + ButterCMS Starter Project
 
 This ExpressJS starter project fully integrates with dynamic sample content from your ButterCMS account, including main menu, pages, blog posts, categories, and tags, all with a beautiful, custom theme with already-implemented search functionality. All of the included sample content is automatically created in your account dashboard when you sign up for a free trial of ButterCMS.
+
+## Recent Updates (v2.0.0)
+
+This project has been updated with the following changes:
+
+- Updated ButterCMS SDK to version 3.0.0
+- Requires Node.js 20.18.0 or higher
+- Updated all dependencies to latest LTS versions
+- Improved compatibility with modern Node.js features (no longer requires experimental flags)
 
 [View our live demo hosted at Vercel](https://expressjs-starter-buttercms.vercel.app/), or you can click a button below to deploy your own copy of our starter project to the provider of your choice.
 
