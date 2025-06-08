@@ -60,10 +60,10 @@ app.use(async (req, res, next) => {
 app.use((req, res, next) => {
   const urlPath = req.path;
   if (urlPath[urlPath.length - 1] !== '/') {
-    const newPath = `${urlPath}/`
-    res.redirect(301, newPath)
+    const newPath = `${urlPath}/`;
+    res.redirect(301, newPath);
   } else {
-    next()
+    next();
   }
 });
 
@@ -228,4 +228,8 @@ app.get('*', (_, res) => {
   res.render('404', { layout: false, type: '404' });
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(
+    `The app is listening on port ${PORT}: http://localhost:${PORT}/`
+  );
+});
