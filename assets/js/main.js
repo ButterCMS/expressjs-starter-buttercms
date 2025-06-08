@@ -6,11 +6,13 @@
 		window.setTimeout(fadeout, 500);
 	}
 
-	function fadeout() {
-		document.querySelector('.preloader').style.opacity = '0';
-		document.querySelector('.preloader').style.display = 'none';
-	}
-
+  function fadeout() {
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+      preloader.style.opacity = '0';
+      preloader.style.display = 'none';
+    }
+  }
 
     /*=====================================
     Sticky

@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
     req.menuItems = menuItems.data.data.navigation_menu[0].menu_items;
     next();
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -53,7 +53,7 @@ app.use(async (req, res, next) => {
     req.categories = categories;
     next();
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -94,7 +94,7 @@ app.get('/blog', async (req, res) => {
       categories,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -121,7 +121,7 @@ app.get('/blog/search', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -151,7 +151,7 @@ app.get('/blog/:slug/', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -184,7 +184,7 @@ app.get('/blog/category/:slug', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
@@ -216,7 +216,7 @@ app.get('/blog/tag/:slug', async (req, res) => {
       menuItems,
     });
   } catch (error) {
-    error.response && res.render('404', { layout: false, type: '404' });
+    error.cause && res.render('404', { layout: false, type: '404' });
   }
 });
 
